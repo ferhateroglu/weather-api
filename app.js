@@ -8,13 +8,15 @@ if(!il){
 else{
     //({url:''},(response,error) =>{}); şeklinde parametre alır.
     request({url: URL,json:true }, (error,response) => {
-        if(response.body.error.code ===1006){
+        if(typeof(response.body.error) !== 'undefined'){
             console.log('bölge bilgisi bulunamadı');
-        }else{
+            console.log(error);
+        }
+        else{
             const {temp_c,wind_kph}=response.body.current;
             console.log(il+' ilinde hava: '+temp_c+' derece ');
             console.log('Rüzgar: '+ wind_kph+'km/s');
-        }
-        
+            console.log(error);
+        }       
     });
 }
